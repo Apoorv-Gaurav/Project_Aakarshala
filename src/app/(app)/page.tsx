@@ -21,8 +21,13 @@ export default function HomePage() {
       <section className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
         <motion.div style={{ y }} className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/40 z-10" />
-          {/* Placeholder for luxurious architectural imagery */}
-          <div className="absolute inset-0 bg-neutral-800" />
+          <Image
+            src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg"
+            alt="Aakarshala Architecture Hero"
+            fill
+            className="object-cover"
+            priority
+          />
         </motion.div>
 
         <div className="container relative z-10 mx-auto px-4 md:px-8 text-center text-white">
@@ -30,7 +35,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-8xl font-bold tracking-tighter uppercase mb-6"
+            className="font-heading text-5xl md:text-8xl font-bold tracking-tighter uppercase mb-6"
           >
             Timeless Design
             <br />
@@ -79,8 +84,8 @@ export default function HomePage() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <h2 className="text-sm uppercase tracking-widest text-accent font-semibold mb-4">Our Philosophy</h2>
-              <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Designing the Unseen.</h3>
+              <h2 className="font-heading text-sm uppercase tracking-widest text-accent font-semibold mb-4">Our Philosophy</h2>
+              <h3 className="font-heading text-4xl md:text-5xl font-bold tracking-tight mb-6">Designing the Unseen.</h3>
               <p className="text-foreground/80 text-lg mb-8 leading-relaxed">
                 At Aakarshala, we believe that true luxury lies in the details. It is not just about what you see, but how a space makes you feel. We blend modern minimalism with warm, organic textures to create environments that are both striking and intimately comfortable.
               </p>
@@ -99,8 +104,12 @@ export default function HomePage() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="relative h-[600px] bg-neutral-200 rounded-xl overflow-hidden"
             >
-               {/* Placeholder for philosophy image */}
-               <div className="absolute inset-0 bg-neutral-300" />
+               <Image
+                 src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781895969/banner_2_btp9d2.jpg"
+                 alt="Aakarshala Architecture Philosophy"
+                 fill
+                 className="object-cover"
+               />
             </motion.div>
           </div>
         </div>

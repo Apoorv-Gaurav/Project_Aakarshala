@@ -1,70 +1,101 @@
 import Link from 'next/link'
-import { MapPin, Phone, Mail, Instagram, Twitter, Linkedin } from 'lucide-react'
+import Image from 'next/image'
+import { MapPin, Phone, Mail, Camera, Briefcase, Pin, Brush, ArrowRight } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background py-16 mt-20">
-      <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div className="space-y-6">
-          <Link href="/" className="text-3xl font-bold tracking-tighter uppercase">
-            Aakarshala
+    <footer className="bg-neutral-950 text-white py-20 mt-24">
+      <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        {/* Brand & Socials */}
+        <div className="lg:col-span-3 space-y-6">
+          <Link href="/" className="relative h-16 w-48 md:h-20 md:w-56 block max-w-full">
+            <Image
+              src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781896703/logo_3_wagrg6.png"
+              alt="Aakarshala Logo"
+              fill
+              className="object-contain object-left"
+            />
           </Link>
-          <p className="text-background/80 max-w-xs">
+          <p className="text-neutral-400 max-w-xs leading-relaxed text-sm">
             Premium architecture and interior design studio crafting timeless spaces that inspire and elevate human experience.
           </p>
-          <div className="flex space-x-4">
-            <Link href="#" className="hover:text-accent transition-colors"><Instagram size={20} /></Link>
-            <Link href="#" className="hover:text-accent transition-colors"><Twitter size={20} /></Link>
-            <Link href="#" className="hover:text-accent transition-colors"><Linkedin size={20} /></Link>
+          <div className="flex space-x-4 pt-2">
+            <Link href="#" className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all"><Camera size={18} /></Link>
+            <Link href="#" className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all"><Briefcase size={18} /></Link>
+            <Link href="#" className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all"><Pin size={18} /></Link>
+            <Link href="#" className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all"><Brush size={18} /></Link>
           </div>
         </div>
 
-        <div>
-          <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
+        {/* Quick Links */}
+        <div className="lg:col-span-2 lg:col-start-5">
+          <h3 className="text-lg font-semibold mb-6">Navigation</h3>
           <ul className="space-y-4">
-            <li><Link href="/about" className="text-background/80 hover:text-accent transition-colors">About Us</Link></li>
-            <li><Link href="/projects" className="text-background/80 hover:text-accent transition-colors">Projects</Link></li>
-            <li><Link href="/services" className="text-background/80 hover:text-accent transition-colors">Services</Link></li>
-            <li><Link href="/consultation" className="text-background/80 hover:text-accent transition-colors">Book Consultation</Link></li>
+            <li><Link href="/" className="text-neutral-400 hover:text-white transition-colors text-sm">Home</Link></li>
+            <li><Link href="/about" className="text-neutral-400 hover:text-white transition-colors text-sm">Our Story</Link></li>
+            <li><Link href="/projects" className="text-neutral-400 hover:text-white transition-colors text-sm">Portfolio</Link></li>
+            <li><Link href="/contact" className="text-neutral-400 hover:text-white transition-colors text-sm flex items-center group">Book Consultation <ArrowRight className="w-3 h-3 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" /></Link></li>
           </ul>
         </div>
 
-        <div>
-          <h3 className="text-lg font-semibold mb-6">Contact</h3>
+        {/* Services */}
+        <div className="lg:col-span-2">
+          <h3 className="text-lg font-semibold mb-6">Expertise</h3>
           <ul className="space-y-4">
-            <li className="flex items-start space-x-3 text-background/80">
-              <MapPin size={20} className="mt-1 flex-shrink-0" />
-              <span>123 Design Avenue,<br />Creative District,<br />New Delhi, 110001</span>
-            </li>
-            <li className="flex items-center space-x-3 text-background/80">
-              <Phone size={20} />
-              <span>+91 98765 43210</span>
-            </li>
-            <li className="flex items-center space-x-3 text-background/80">
-              <Mail size={20} />
-              <span>hello@aakarshala.com</span>
-            </li>
+            <li><Link href="/services#architecture" className="text-neutral-400 hover:text-white transition-colors text-sm">Architecture</Link></li>
+            <li><Link href="/services#interior" className="text-neutral-400 hover:text-white transition-colors text-sm">Interior Design</Link></li>
+            <li><Link href="/services#landscape" className="text-neutral-400 hover:text-white transition-colors text-sm">Landscape</Link></li>
+            <li><Link href="/services#renovation" className="text-neutral-400 hover:text-white transition-colors text-sm">Renovation</Link></li>
           </ul>
         </div>
 
-        <div>
-          <h3 className="text-lg font-semibold mb-6">Location</h3>
-          <div className="bg-background/10 rounded-lg overflow-hidden h-32 mb-4 relative">
-            {/* Embedded Mini Map Preview Placeholder */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <MapPin size={32} className="text-background/50" />
+        {/* Compact Location Card */}
+        <div className="lg:col-span-4 lg:col-start-9 bg-neutral-900/50 border border-neutral-800 p-6 rounded-2xl">
+          <h3 className="text-sm uppercase tracking-widest text-neutral-500 mb-4 font-semibold">Visit Our Studio</h3>
+          
+          <div className="flex gap-4 mb-5">
+            <div className="w-20 h-20 relative rounded-lg overflow-hidden shrink-0">
+              <Image src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg" alt="Office" fill className="object-cover" />
+            </div>
+            <div>
+              <p className="text-sm text-neutral-300 leading-relaxed mb-2">Shop No. 9,<br/>Scorpio Club, Kursi Road,<br/>Lucknow, UP 226021</p>
+              <a href="tel:+919451177570" className="text-accent text-sm font-medium hover:text-white transition-colors">+91 94511 77570</a>
             </div>
           </div>
+
           <Link 
-            href="/contact" 
-            className="inline-block border border-background/20 rounded px-6 py-2 hover:bg-background hover:text-foreground transition-all duration-300"
+            href="https://maps.app.goo.gl/kciadBWFGEhAwTFt7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block h-24 relative rounded-lg overflow-hidden group mb-4 border border-neutral-800"
           >
-            View on Map
+            <Image
+              src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781900216/location_1_vl0qcf.jpg"
+              alt="Aakarshala Map"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+          </Link>
+
+          <Link 
+            href="https://maps.app.goo.gl/kciadBWFGEhAwTFt7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full block text-center bg-white text-black py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors"
+          >
+            Open in Google Maps
           </Link>
         </div>
       </div>
-      <div className="container mx-auto px-4 md:px-8 mt-16 pt-8 border-t border-background/10 text-center text-background/50 text-sm">
-        &copy; {new Date().getFullYear()} Aakarshala Studio. All rights reserved.
+      
+      <div className="container mx-auto px-4 md:px-8 mt-16 pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center text-neutral-500 text-sm gap-4">
+        <p>&copy; {new Date().getFullYear()} Aakarshala Studio. All rights reserved.</p>
+        <div className="flex space-x-6">
+          <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+        </div>
       </div>
     </footer>
   )

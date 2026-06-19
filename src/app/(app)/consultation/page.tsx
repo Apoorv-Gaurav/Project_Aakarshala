@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, CheckCircle, XCircle } from 'lucide-react'
 
 export default function ConsultationPage() {
   const [formData, setFormData] = useState({
@@ -19,6 +19,8 @@ export default function ConsultationPage() {
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showMockPayment, setShowMockPayment] = useState(false)
+  const [pendingConsultationId, setPendingConsultationId] = useState<string | null>(null)
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -29,7 +31,7 @@ export default function ConsultationPage() {
     setIsSubmitting(true)
     
     try {
-      const res = await fetch('/api/create-razorpay-order', {
+      const res = await fetch('/api/create-consultation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -39,43 +41,8 @@ export default function ConsultationPage() {
       
       if (!res.ok) throw new Error(data.error || 'Failed to create order')
       
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'dummy_key',
-        amount: data.amount,
-        currency: 'INR',
-        name: 'Aakarshala',
-        description: 'Consultation Booking',
-        order_id: data.orderId,
-        handler: async function (response: any) {
-          const verifyRes = await fetch('/api/verify-payment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_signature: response.razorpay_signature,
-              consultationId: data.consultationId
-            })
-          })
-          
-          if (verifyRes.ok) {
-            window.location.href = `/consultation/success?id=${data.consultationId}`
-          } else {
-            alert('Payment verification failed.')
-          }
-        },
-        prefill: {
-          name: formData.fullName,
-          email: formData.email,
-          contact: formData.phoneNumber
-        },
-        theme: {
-          color: '#1a1a1a'
-        }
-      }
-      
-      const rzp = new (window as any).Razorpay(options)
-      rzp.open()
+      setPendingConsultationId(data.consultationId)
+      setShowMockPayment(true)
       
     } catch (error) {
       console.error(error)
@@ -85,8 +52,32 @@ export default function ConsultationPage() {
     }
   }
 
+  const handleMockPayment = async (success: boolean) => {
+    setIsSubmitting(true)
+    try {
+      const res = await fetch('/api/mock-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ consultationId: pendingConsultationId, success }),
+      })
+      
+      if (res.ok) {
+        window.location.href = `/consultation/success?id=${pendingConsultationId}`
+      } else {
+        alert('Payment failed. Please try again.')
+        setShowMockPayment(false)
+      }
+    } catch (error) {
+      console.error(error)
+      alert('Payment simulation failed.')
+      setShowMockPayment(false)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-background py-24">
+    <div className="min-h-screen bg-background py-24 relative">
       <div className="container mx-auto px-4 md:px-8 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -167,16 +158,54 @@ export default function ConsultationPage() {
 
           <button 
             type="submit" 
-            disabled={isSubmitting}
+            disabled={isSubmitting || showMockPayment}
             className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-medium hover:bg-primary/90 transition-colors flex items-center justify-center disabled:opacity-70"
           >
-            {isSubmitting ? 'Processing...' : 'Proceed to Payment'}
-            {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5" />}
+            {isSubmitting && !showMockPayment ? 'Processing...' : 'Proceed to Payment'}
+            {!isSubmitting && !showMockPayment && <ArrowRight className="ml-2 w-5 h-5" />}
           </button>
         </motion.form>
       </div>
       
-      <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
+      {/* Mock Payment Modal */}
+      <AnimatePresence>
+        {showMockPayment && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-card w-full max-w-md p-8 rounded-2xl shadow-2xl border border-border relative"
+            >
+              <h2 className="text-2xl font-bold mb-4 text-center">Payment Simulation</h2>
+              <p className="text-muted-foreground text-center mb-8">
+                Since Razorpay is disabled, choose an outcome to simulate the payment process.
+              </p>
+              
+              <div className="space-y-4">
+                <button 
+                  type="button"
+                  onClick={() => handleMockPayment(true)}
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-70"
+                >
+                  <CheckCircle className="w-5 h-5" />
+                  <span>Pass Payment</span>
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => handleMockPayment(false)}
+                  disabled={isSubmitting}
+                  className="w-full flex items-center justify-center space-x-2 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-70"
+                >
+                  <XCircle className="w-5 h-5" />
+                  <span>Fail Payment</span>
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
