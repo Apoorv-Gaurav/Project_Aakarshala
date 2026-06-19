@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, CheckCircle, XCircle, MapPin, Phone, Mail, MessageCircle, Plus, Minus, Camera, Briefcase, Pin, Brush } from 'lucide-react'
 
 const faqs = [
@@ -17,11 +17,6 @@ const faqs = [
 
 export default function ContactPage() {
   const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  })
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
 
   // Form State
   const [formData, setFormData] = useState({
@@ -42,7 +37,7 @@ export default function ContactPage() {
   const [pendingConsultationId, setPendingConsultationId] = useState<string | null>(null)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
@@ -111,7 +106,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8"
           >
-            Let's Create <span className="text-accent italic font-light">Together</span>
+            Let&apos;s Create <span className="text-accent italic font-light">Together</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -119,7 +114,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed"
           >
-            We believe every extraordinary space begins with a meaningful conversation. Whether you're planning a residence, workspace, or hospitality project, our team would love to hear your vision.
+            We believe every extraordinary space begins with a meaningful conversation. Whether you&apos;re planning a residence, workspace, or hospitality project, our team would love to hear your vision.
           </motion.p>
         </div>
       </section>
@@ -304,7 +299,7 @@ export default function ContactPage() {
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-6xl font-bold mb-4">Visit Our Studio</h2>
-            <p className="text-lg text-foreground/70">We'd love to welcome you to Aakarshala.</p>
+            <p className="text-lg text-foreground/70">We&apos;d love to welcome you to Aakarshala.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
