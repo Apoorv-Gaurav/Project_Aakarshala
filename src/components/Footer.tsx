@@ -52,16 +52,17 @@ export function Footer() {
         </div>
 
         {/* Compact Location Card */}
-        <div className="col-span-2 lg:col-span-4 lg:col-start-9 bg-neutral-900/50 border border-neutral-800 p-5 md:p-6 rounded-2xl">
+        <div className="col-span-2 lg:col-span-4 lg:col-start-9 bg-neutral-900/50 border border-neutral-800 p-5 md:p-6 rounded-2xl lg:-mt-6">
           <h3 className="text-xs md:text-sm uppercase tracking-widest text-neutral-500 mb-3 md:mb-4 font-semibold">Visit Our Studio</h3>
 
-          <div className="flex gap-3 md:gap-4 mb-4 md:mb-5">
+          <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-5">
             <div className="w-16 h-16 md:w-20 md:h-20 relative rounded-lg overflow-hidden shrink-0">
               <Image src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg" alt="Office" fill sizes="100px" className="object-cover" />
             </div>
-            <div>
-              <p className="text-xs md:text-sm text-neutral-300 leading-relaxed mb-1 md:mb-2">Shop No. 9,<br />Scorpio Club, Kursi Road,<br />Lucknow, UP 226021</p>
+            <div className="flex flex-col items-start gap-1">
+              <p className="text-xs md:text-sm text-neutral-300 leading-relaxed mb-1">Shop No. 9,<br />Scorpio Club, Kursi Road,<br />Lucknow, UP 226021</p>
               <a href="tel:+919451177570" className="text-accent text-xs md:text-sm font-medium hover:text-white transition-colors">+91 94511 77570</a>
+              <a href="mailto:mailtoaakarshala@gmail.com" className="text-accent text-xs md:text-sm font-medium hover:text-white transition-colors">mailtoaakarshala@gmail.com</a>
             </div>
           </div>
 
@@ -69,7 +70,7 @@ export function Footer() {
             href="https://maps.app.goo.gl/kciadBWFGEhAwTFt7"
             target="_blank"
             rel="noopener noreferrer"
-            className="block h-32 md:h-40 relative rounded-lg overflow-hidden group border border-neutral-800"
+            className="block h-28 md:h-32 relative rounded-lg overflow-hidden group border border-neutral-800"
           >
             <Image
               src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781900216/location_1_vl0qcf.jpg"

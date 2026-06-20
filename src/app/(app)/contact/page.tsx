@@ -430,27 +430,6 @@ export default function ContactPage() {
         <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-multiply" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
         <div className="container mx-auto max-w-5xl text-center relative z-10">
 
-          <div className="flex justify-center space-x-6 mb-20">
-            {[
-              { icon: <Camera className="w-6 h-6" />, label: 'Instagram' },
-              { icon: <Briefcase className="w-6 h-6" />, label: 'LinkedIn' },
-              { icon: <Pin className="w-6 h-6" />, label: 'Pinterest' },
-              { icon: <Brush className="w-6 h-6" />, label: 'Behance' },
-            ].map((social, idx) => (
-              <motion.a
-                key={idx}
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/20 hover:shadow-[0_0_20px_rgba(200,160,100,0.3)] transition-all duration-300"
-              >
-                {social.icon}
-                <span className="sr-only">{social.label}</span>
-              </motion.a>
-            ))}
-          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
