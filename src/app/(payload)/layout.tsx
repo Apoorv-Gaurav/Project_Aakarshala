@@ -12,6 +12,7 @@ type Args = {
 }
 
 const Layout = ({ children }: Args) => (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   <RootLayout importMap={importMap} config={config} serverFunction={handleServerFunctions as any}>
     {children}
   </RootLayout>

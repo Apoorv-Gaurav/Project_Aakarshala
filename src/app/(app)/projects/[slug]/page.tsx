@@ -1,29 +1,10 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Image from 'next/image'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowUpRight } from 'lucide-react'
 
 export const revalidate = 60 // Revalidate every 60 seconds (ISR) instead of force-dynamic
 
-interface Project {
-  id: string;
-  slug: string;
-  title: string;
-  category: string;
-  location: string;
-  coverImage?: { url: string; alt?: string } | string;
-}
-
-const getMasonryClasses = (index: number) => {
-  const mod = index % 5;
-  if (mod === 0) return { sizeClass: 'lg:col-span-2 lg:row-span-2 md:col-span-2', heightClass: 'h-[350px] md:h-[500px] lg:h-[800px]' };
-  if (mod === 1) return { sizeClass: 'lg:col-span-1 lg:row-span-1', heightClass: 'h-[300px] md:h-[350px] lg:h-[388px]' };
-  if (mod === 2) return { sizeClass: 'lg:col-span-1 lg:row-span-1', heightClass: 'h-[300px] md:h-[350px] lg:h-[388px]' };
-  if (mod === 3) return { sizeClass: 'lg:col-span-1 lg:row-span-1', heightClass: 'h-[300px] md:h-[350px] lg:h-[400px]' };
-  return { sizeClass: 'lg:col-span-2 lg:row-span-1 md:col-span-2', heightClass: 'h-[300px] md:h-[350px] lg:h-[400px]' };
-}
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params
@@ -44,16 +25,6 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   }
 
   const project = projects[0]
-
-  const { docs: otherProjects } = await payload.find({
-    collection: 'projects',
-    where: {
-      slug: {
-        not_equals: resolvedParams.slug,
-      },
-    },
-    limit: 5,
-  })
 
   return (
     <div className="min-h-screen bg-background">
