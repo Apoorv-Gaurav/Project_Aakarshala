@@ -10,7 +10,7 @@ export function Footer() {
 
         {/* Brand & Socials */}
         <div className="col-span-2 sm:col-span-2 lg:col-span-3 flex flex-col items-center text-center space-y-6">
-          <Link href="/" className="relative h-32 w-[280px] md:h-48 md:w-[350px] block">
+          <Link href="/" className="relative h-20 w-full max-w-[200px] md:h-32 md:max-w-[280px] lg:h-40 lg:max-w-[350px] block mx-auto">
             <Image
               src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781896703/logo_3_wagrg6.png"
               alt="Aakarshala Logo"
@@ -59,10 +59,10 @@ export function Footer() {
             <div className="w-16 h-16 md:w-20 md:h-20 relative rounded-lg overflow-hidden shrink-0">
               <Image src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg" alt="Office" fill sizes="100px" className="object-cover" />
             </div>
-            <div className="flex flex-col items-start gap-1">
-              <p className="text-xs md:text-sm text-neutral-300 leading-relaxed mb-1">Shop No. 9,<br />Scorpio Club, Kursi Road,<br />Lucknow, UP 226021</p>
-              <a href="tel:+919451177570" className="text-accent text-xs md:text-sm font-medium hover:text-white transition-colors">+91 94511 77570</a>
-              <a href="mailto:mailtoaakarshala@gmail.com" className="text-accent text-xs md:text-sm font-medium hover:text-white transition-colors">mailtoaakarshala@gmail.com</a>
+            <div className="flex flex-col items-start gap-1 flex-1 min-w-0">
+              <p className="text-xs md:text-sm text-neutral-300 leading-relaxed mb-1 truncate w-full whitespace-normal">Shop No. 9,<br />Scorpio Club, Kursi Road,<br />Lucknow, UP 226021</p>
+              <a href="tel:+919451177570" className="text-accent text-xs md:text-sm font-medium hover:text-white transition-colors truncate w-full">+91 94511 77570</a>
+              <a href="mailto:mailtoaakarshala@gmail.com" className="text-accent text-xs md:text-sm font-medium hover:text-white transition-colors truncate w-full">mailtoaakarshala@gmail.com</a>
             </div>
           </div>
 
