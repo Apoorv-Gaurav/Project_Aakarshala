@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 import { withPayload } from "@payloadcms/next/withPayload";
 
+import dns from 'node:dns';
+dns.setDefaultResultOrder('ipv4first');
+
 const nextConfig: NextConfig = {
   images: {
+    loader: 'custom',
+    loaderFile: './src/cloudinaryLoader.ts',
     remotePatterns: [
       {
         protocol: 'https',

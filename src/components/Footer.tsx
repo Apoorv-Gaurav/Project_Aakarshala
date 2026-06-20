@@ -14,6 +14,7 @@ export function Footer() {
               src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781896703/logo_3_wagrg6.png"
               alt="Aakarshala Logo"
               fill
+              sizes="(max-width: 768px) 300px, 400px"
               className="object-contain object-center"
             />
           </Link>
@@ -56,7 +57,7 @@ export function Footer() {
 
           <div className="flex gap-3 md:gap-4 mb-4 md:mb-5">
             <div className="w-16 h-16 md:w-20 md:h-20 relative rounded-lg overflow-hidden shrink-0">
-              <Image src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg" alt="Office" fill className="object-cover" />
+              <Image src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg" alt="Office" fill sizes="100px" className="object-cover" />
             </div>
             <div>
               <p className="text-xs md:text-sm text-neutral-300 leading-relaxed mb-1 md:mb-2">Shop No. 9,<br />Scorpio Club, Kursi Road,<br />Lucknow, UP 226021</p>
@@ -74,6 +75,7 @@ export function Footer() {
               src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781900216/location_1_vl0qcf.jpg"
               alt="Aakarshala Map"
               fill
+              sizes="(max-width: 768px) 100vw, 400px"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </Link>

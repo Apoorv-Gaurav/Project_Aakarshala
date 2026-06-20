@@ -2,14 +2,27 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 
 export const revalidate = 60 // Revalidate every 60 seconds (ISR) instead of force-dynamic
 
 
+interface Project {
+  title: string;
+  coverImage?: string;
+  category?: string;
+  location?: string;
+  clientName?: string;
+  completionYear?: string;
+  area?: string;
+  description?: string | Record<string, unknown> | null;
+  gallery?: { image?: string }[];
+}
+
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params
   const payload = await getPayload({ config: configPromise })
-  let projects = []
+  let projects: Project[] = []
   try {
     const result = await payload.find({
       collection: 'projects',
@@ -20,7 +33,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       },
       limit: 1,
     })
-    projects = result.docs
+    projects = result.docs as unknown as Project[]
   } catch (error) {
     console.warn('Database not initialized yet, skipping project fetch.')
   }
@@ -34,10 +47,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="min-h-screen bg-background">
       <div className="w-full h-[70vh] relative bg-neutral-200">
-        {project.coverImage && typeof project.coverImage !== 'string' && (
+        {typeof project.coverImage === 'string' && project.coverImage && (
           <Image 
-            src={project.coverImage.url as string} 
-            alt={project.coverImage.alt as string || project.title}
+            src={project.coverImage} 
+            alt={project.title}
             fill
             className="object-cover"
             sizes="100vw"
@@ -57,9 +70,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           <div className="md:col-span-2 prose prose-lg prose-neutral dark:prose-invert">
             {project.description && (
-              <div>
-                <p>Detailed description coming soon...</p>
-              </div>
+              <RichText data={project.description as any} />
             )}
             {!project.description && <p>No description provided.</p>}
           </div>
@@ -94,13 +105,13 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <div className="mt-24">
             <h3 className="text-2xl font-bold mb-8">Gallery</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {project.gallery.map((item: { image: { url: string; alt?: string } | string }, index: number) => {
-                if (typeof item.image === 'string') return null;
+              {project.gallery.map((item: { image?: string }, index: number) => {
+                if (typeof item.image !== 'string' || !item.image) return null;
                 return (
                   <div key={index} className="aspect-[4/3] relative bg-neutral-200 rounded-xl overflow-hidden">
                     <Image 
-                      src={item.image.url} 
-                      alt={item.image.alt || `Gallery image ${index + 1}`}
+                      src={item.image} 
+                      alt={`Gallery image ${index + 1}`}
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 768px) 100vw, 50vw"

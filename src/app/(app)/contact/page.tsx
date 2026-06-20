@@ -175,6 +175,7 @@ export default function ContactPage() {
                 src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781899764/IMG-20251016-WA0004_hvessu.jpg"
                 alt="Aakarshala Office"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
@@ -315,6 +316,7 @@ export default function ContactPage() {
                 src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781900216/location_1_vl0qcf.jpg"
                 alt="Studio Map Location"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-1000"
               />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
@@ -332,6 +334,7 @@ export default function ContactPage() {
                   src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781895969/banner_2_btp9d2.jpg"
                   alt="Aakarshala Interior"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 30vw"
                   className="object-cover"
                 />
               </div>

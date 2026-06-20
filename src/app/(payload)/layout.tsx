@@ -11,9 +11,17 @@ type Args = {
   children: React.ReactNode
 }
 
+const serverFunction = async function (args: any) {
+  'use server'
+  return handleServerFunctions({
+    ...args,
+    config,
+    importMap,
+  })
+}
+
 const Layout = ({ children }: Args) => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  <RootLayout importMap={importMap} config={config} serverFunction={handleServerFunctions as any}>
+  <RootLayout importMap={importMap} config={config} serverFunction={serverFunction}>
     {children}
   </RootLayout>
 )

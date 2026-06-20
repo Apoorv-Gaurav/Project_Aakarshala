@@ -1,4 +1,6 @@
 import { buildConfig } from 'payload';
+import dns from 'node:dns';
+dns.setDefaultResultOrder('ipv4first');
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { Projects } from './collections/Projects';

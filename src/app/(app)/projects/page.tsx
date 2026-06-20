@@ -65,14 +65,14 @@ interface Project {
 
 export default async function ProjectsPage() {
   const payload = await getPayload({ config: configPromise })
-  let dbProjects = []
+  let dbProjects: Project[] = []
   try {
     const result = await payload.find({
       collection: 'projects',
       depth: 1,
       limit: 100,
     })
-    dbProjects = result.docs
+    dbProjects = result.docs as unknown as Project[]
   } catch (error) {
     console.warn('Database not initialized yet, skipping project fetch during build.')
   }
@@ -143,9 +143,9 @@ export default async function ProjectsPage() {
             </div>
           )}
 
-          {(dbProjects as unknown as Project[]).map((project) => {
-            const coverUrl = typeof project.coverImage !== 'string' ? project.coverImage?.url || '' : '';
-            const coverAlt = typeof project.coverImage !== 'string' ? project.coverImage?.alt || project.title : project.title;
+          {dbProjects.map((project) => {
+            const coverUrl = typeof project.coverImage === 'string' ? project.coverImage : '';
+            const coverAlt = project.title;
 
             return (
               <div

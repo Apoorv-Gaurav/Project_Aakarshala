@@ -57,6 +57,7 @@ export function Navbar() {
             }
             alt="Aakarshala Logo"
             fill
+            sizes="(max-width: 768px) 150px, 200px"
             className="object-contain object-left transition-opacity duration-300"
             priority
           />

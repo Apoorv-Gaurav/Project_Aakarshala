@@ -55,9 +55,13 @@ export const Projects: CollectionConfig = {
     },
     {
       name: 'coverImage',
-      type: 'upload',
-      relationTo: 'media',
+      type: 'text',
       required: true,
+      admin: {
+        components: {
+          Field: '@/components/CloudinaryUploader#CloudinaryUploader',
+        },
+      },
     },
     {
       name: 'gallery',
@@ -65,9 +69,13 @@ export const Projects: CollectionConfig = {
       fields: [
         {
           name: 'image',
-          type: 'upload',
-          relationTo: 'media',
+          type: 'text',
           required: true,
+          admin: {
+            components: {
+              Field: '@/components/CloudinaryUploader#CloudinaryUploader',
+            },
+          },
         },
       ],
     },
