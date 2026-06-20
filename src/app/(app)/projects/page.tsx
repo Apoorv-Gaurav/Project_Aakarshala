@@ -65,13 +65,17 @@ interface Project {
 
 export default async function ProjectsPage() {
   const payload = await getPayload({ config: configPromise })
-  
-  const { docs: dbProjects } = await payload.find({
-    collection: 'projects',
-    depth: 1,
-    limit: 100,
-  })
-
+  let dbProjects = []
+  try {
+    const result = await payload.find({
+      collection: 'projects',
+      depth: 1,
+      limit: 100,
+    })
+    dbProjects = result.docs
+  } catch (error) {
+    console.warn('Database not initialized yet, skipping project fetch during build.')
+  }
   // Standard responsive height for admin cards
   const standardHeight = 'h-[300px] md:h-[350px] lg:h-[400px]'
 

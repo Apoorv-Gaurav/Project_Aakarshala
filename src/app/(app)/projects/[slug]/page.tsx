@@ -9,16 +9,21 @@ export const revalidate = 60 // Revalidate every 60 seconds (ISR) instead of for
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params
   const payload = await getPayload({ config: configPromise })
-  
-  const { docs: projects } = await payload.find({
-    collection: 'projects',
-    where: {
-      slug: {
-        equals: resolvedParams.slug,
+  let projects = []
+  try {
+    const result = await payload.find({
+      collection: 'projects',
+      where: {
+        slug: {
+          equals: resolvedParams.slug,
+        },
       },
-    },
-    limit: 1,
-  })
+      limit: 1,
+    })
+    projects = result.docs
+  } catch (error) {
+    console.warn('Database not initialized yet, skipping project fetch.')
+  }
 
   if (!projects || projects.length === 0) {
     notFound()
