@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Camera, Briefcase, Pin, Brush, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa'
 
 export function Footer() {
   return (
@@ -22,10 +23,9 @@ export function Footer() {
             Premium architecture and interior design studio crafting timeless spaces that inspire and elevate human experience.
           </p>
           <div className="flex justify-center space-x-3 pt-2">
-            <Link href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><Camera size={16} /></Link>
-            <Link href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><Briefcase size={16} /></Link>
-            <Link href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><Pin size={16} /></Link>
-            <Link href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><Brush size={16} /></Link>
+            <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><FaInstagram size={16} /></Link>
+            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><FaLinkedin size={16} /></Link>
+            <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><FaFacebook size={16} /></Link>
           </div>
         </div>
 

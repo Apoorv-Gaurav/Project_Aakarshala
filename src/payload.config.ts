@@ -4,6 +4,7 @@ dns.setDefaultResultOrder('ipv4first');
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { Projects } from './collections/Projects';
+import sharp from 'sharp';
 
 import { Media } from './collections/Media';
 import { Services } from './collections/Services';
@@ -13,6 +14,7 @@ import { ContactMessages } from './collections/ContactMessages';
 import { Consultations } from './collections/Consultations';
 
 export default buildConfig({
+  sharp,
   admin: {
     user: 'users',
   },

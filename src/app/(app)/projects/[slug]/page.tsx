@@ -34,8 +34,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       limit: 1,
     })
     projects = result.docs as unknown as Project[]
-  } catch (error) {
-    console.warn('Database not initialized yet, skipping project fetch.')
+  } catch (err) {
+    console.warn('Database not initialized yet, skipping project fetch.', err)
   }
 
   if (!projects || projects.length === 0) {
@@ -70,6 +70,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           <div className="md:col-span-2 prose prose-lg prose-neutral dark:prose-invert">
             {project.description && (
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               <RichText data={project.description as any} />
             )}
             {!project.description && <p>No description provided.</p>}

@@ -11,6 +11,7 @@ type Args = {
   children: React.ReactNode
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const serverFunction = async function (args: any) {
   'use server'
   return handleServerFunctions({

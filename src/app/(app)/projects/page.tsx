@@ -73,8 +73,8 @@ export default async function ProjectsPage() {
       limit: 100,
     })
     dbProjects = result.docs as unknown as Project[]
-  } catch (error) {
-    console.warn('Database not initialized yet, skipping project fetch during build.')
+  } catch (err) {
+    console.warn('Database not initialized yet, skipping project fetch during build.', err)
   }
   // Standard responsive height for admin cards
   const standardHeight = 'h-[300px] md:h-[350px] lg:h-[400px]'
