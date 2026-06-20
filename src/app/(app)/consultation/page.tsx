@@ -22,7 +22,7 @@ export default function ConsultationPage() {
   const [showMockPayment, setShowMockPayment] = useState(false)
   const [pendingConsultationId, setPendingConsultationId] = useState<string | null>(null)
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 

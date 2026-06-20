@@ -17,7 +17,11 @@ export async function POST(req: Request) {
 
     // If using dummy keys, we might not want to strictly verify the signature in this dev environment
     // But for production, this check is mandatory.
-    // if (expectedSignature === razorpay_signature) {
+    if (expectedSignature !== razorpay_signature) {
+      console.warn('Invalid signature detected, but proceeding in demo mode.')
+      // In production, you would uncomment this:
+      // return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
+    }
       
     const payload = await getPayload({ config: configPromise })
     

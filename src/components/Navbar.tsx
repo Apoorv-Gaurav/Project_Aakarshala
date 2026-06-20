@@ -21,6 +21,9 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
+  const isHome = pathname === '/'
+  const isTransparentDark = isHome && !scrolled && !mobileMenuOpen
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
@@ -39,19 +42,22 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-out',
+        'fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-out border-b',
         scrolled
-          ? 'bg-background/90 backdrop-blur-lg border-b border-border/50 py-3 shadow-sm'
-          : 'bg-transparent py-5 md:py-8'
+          ? 'bg-background/90 backdrop-blur-lg border-border/50 py-3 shadow-sm'
+          : 'bg-transparent border-transparent py-3 md:py-4'
       )}
     >
-      <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
+      <div className="w-full px-6 md:px-12 lg:px-20 flex items-center justify-between">
         <Link href="/" className="z-50 relative h-10 w-36 md:h-12 md:w-48 block shrink-0">
           <Image
-            src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781896288/logo_5_llvtzy.png"
+            src={isTransparentDark
+              ? "https://res.cloudinary.com/dpr8jejse/image/upload/v1781939572/logo_transparent_1_u2tybq.png" // Light logo
+              : "https://res.cloudinary.com/dpr8jejse/image/upload/v1781896288/logo_5_llvtzy.png" // Dark logo
+            }
             alt="Aakarshala Logo"
             fill
-            className="object-contain object-left"
+            className="object-contain object-left transition-opacity duration-300"
             priority
           />
         </Link>
@@ -66,7 +72,9 @@ export function Navbar() {
                 'text-sm lg:text-base font-medium tracking-wide transition-colors duration-300 relative group py-2',
                 pathname === link.href
                   ? 'text-accent'
-                  : 'text-foreground/90 hover:text-accent'
+                  : isTransparentDark
+                    ? 'text-white/90 hover:text-white'
+                    : 'text-foreground/90 hover:text-accent'
               )}
             >
               {link.name}
@@ -84,7 +92,10 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden z-50 w-10 h-10 flex items-center justify-center rounded-full hover:bg-foreground/5 transition-colors"
+          className={cn(
+            "md:hidden z-50 w-10 h-10 flex items-center justify-center rounded-full transition-colors",
+            isTransparentDark ? "text-white hover:bg-white/10" : "text-foreground hover:bg-foreground/5"
+          )}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
         >
@@ -99,9 +110,9 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 w-full h-full bg-background z-40 flex flex-col items-center justify-center"
+              className="fixed inset-0 w-full h-[100dvh] bg-background z-40 flex flex-col items-center justify-center overflow-y-auto pt-20 pb-10"
             >
-              <nav className="flex flex-col items-center space-y-8">
+              <nav className="flex flex-col items-center space-y-6 md:space-y-8 w-full px-6">
                 {links.map((link, i) => (
                   <motion.div
                     key={link.name}
@@ -109,11 +120,12 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ delay: i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full text-center"
                   >
                     <Link
                       href={link.href}
                       className={cn(
-                        'text-3xl font-medium tracking-wide transition-colors duration-300',
+                        'block text-2xl md:text-3xl font-medium tracking-wide transition-colors duration-300',
                         pathname === link.href ? 'text-accent' : 'hover:text-accent'
                       )}
                       onClick={() => setMobileMenuOpen(false)}

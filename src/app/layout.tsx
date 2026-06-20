@@ -15,6 +15,17 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Aakarshala | Architecture & Interior Design",
   description: "Premium architecture and interior design studio crafting timeless spaces.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({

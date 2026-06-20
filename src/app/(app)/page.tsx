@@ -11,7 +11,7 @@ const fadeUp = {
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
   }),
 }
 
@@ -19,7 +19,7 @@ const fadeUp = {
 const SERVICES = [
   { num: '01', title: 'Residential Architecture', desc: 'Designing homes that reflect lifestyle, context, and timeless architectural principles while creating spaces that feel personal and enduring.', icon: Home, img: 'https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg' },
   { num: '02', title: 'Interior Architecture', desc: 'Crafting interiors that seamlessly blend functionality, materials, lighting, and aesthetics to create meaningful experiences.', icon: Paintbrush, img: 'https://res.cloudinary.com/dpr8jejse/image/upload/v1781895969/banner_2_btp9d2.jpg' },
-  { num: '03', title: 'Commercial Projects', desc: 'Creating thoughtful commercial environments that balance efficiency, brand identity, and user experience.', icon: Building2, img: 'https://res.cloudinary.com/dpr8jejse/image/upload/v1781900216/location_1_vl0qcf.jpg' },
+  { num: '03', title: 'Commercial Projects', desc: 'Creating thoughtful commercial environments that balance efficiency, brand identity, and user experience.', icon: Building2, img: 'https://res.cloudinary.com/dpr8jejse/image/upload/v1781899764/IMG-20251016-WA0004_hvessu.jpg' },
   { num: '04', title: 'Renovations & Additions', desc: 'Transforming existing spaces with carefully considered interventions that respect the original structure while introducing contemporary functionality.', icon: Wrench, img: 'https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg' },
   { num: '05', title: 'Coming Soon', desc: 'Reserved for future services and expansion of Aakarshala\u0027s offerings.', icon: Plus, img: 'https://res.cloudinary.com/dpr8jejse/image/upload/v1781895969/banner_2_btp9d2.jpg' },
 ]
@@ -49,7 +49,7 @@ const PROJECTS = [
     category: 'Commercial',
     title: 'Urban Workspace',
     location: 'Mumbai, India',
-    img: 'https://res.cloudinary.com/dpr8jejse/image/upload/v1781900216/location_1_vl0qcf.jpg',
+    img: 'https://res.cloudinary.com/dpr8jejse/image/upload/v1781899764/IMG-20251016-WA0004_hvessu.jpg',
     sizeClass: 'lg:col-span-1 lg:row-span-1',
     heightClass: 'h-[300px] md:h-[350px] lg:h-full lg:min-h-[388px]',
   },
@@ -86,7 +86,7 @@ export default function HomePage() {
     <div ref={containerRef} className="relative min-h-screen">
 
       {/* ─── Hero Section ─── */}
-      <section className="relative h-[80vh] md:h-[90vh] w-full overflow-hidden flex items-center justify-center">
+      <section className="relative h-[100svh] w-full overflow-hidden flex items-center justify-center">
         <motion.div style={{ y }} className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/40 z-10" />
           <Image
@@ -151,7 +151,7 @@ export default function HomePage() {
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
             >
               <h2 className="font-heading text-sm uppercase tracking-widest text-accent font-semibold mb-4">Our Philosophy</h2>
               <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-5 md:mb-6">Designing the Unseen.</h3>
@@ -171,7 +171,7 @@ export default function HomePage() {
               initial="hidden"
               whileInView="visible"
               custom={2}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               className="relative h-[350px] md:h-[500px] lg:h-[600px] bg-neutral-200 rounded-xl md:rounded-2xl overflow-hidden"
             >
                <Image
@@ -193,7 +193,7 @@ export default function HomePage() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="mb-10 md:mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Services</h2>
@@ -209,7 +209,7 @@ export default function HomePage() {
                   initial="hidden"
                   whileInView="visible"
                   custom={i}
-                  viewport={{ once: true, margin: "-50px" }}
+                  viewport={{ once: false, margin: "-50px" }}
                   className="bg-[#FFFFFF] p-7 md:p-10 rounded-[20px] md:rounded-[24px] border border-black/5 relative group overflow-hidden flex flex-col justify-between hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 min-h-[280px] md:min-h-[360px]"
                 >
                   {/* Hover Background Image Reveal */}
@@ -253,7 +253,7 @@ export default function HomePage() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="mb-10 md:mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6 text-[#111111]">Selected Projects</h2>
@@ -270,7 +270,7 @@ export default function HomePage() {
                 initial="hidden"
                 whileInView="visible"
                 custom={i}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: "-50px" }}
                 className={`w-full relative ${project.sizeClass}`}
               >
                 <Link href={`/projects/${project.slug}`} className={`group block w-full relative rounded-[20px] md:rounded-[28px] overflow-hidden hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-700 ${project.heightClass}`}>
@@ -316,7 +316,7 @@ export default function HomePage() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="space-y-6 md:space-y-10"
           >
             <h2 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1]">

@@ -10,7 +10,7 @@ const fadeUp = {
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
   }),
 }
 
@@ -57,7 +57,7 @@ export default function AboutPage() {
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               className="order-2 lg:order-1"
             >
               <h2 className="font-heading text-3xl md:text-4xl lg:text-6xl font-bold mb-6 md:mb-10">Design Philosophy</h2>
@@ -78,7 +78,7 @@ export default function AboutPage() {
               initial="hidden"
               whileInView="visible"
               custom={2}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               className="order-1 lg:order-2 relative h-[350px] md:h-[500px] lg:h-[700px] rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-2xl group"
             >
               <Image
@@ -102,7 +102,7 @@ export default function AboutPage() {
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               className="relative h-[350px] md:h-[500px] lg:h-[600px] rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-xl group"
             >
               <Image
@@ -118,7 +118,7 @@ export default function AboutPage() {
               initial="hidden"
               whileInView="visible"
               custom={2}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
             >
               <h2 className="font-heading text-3xl md:text-4xl lg:text-6xl font-bold mb-6 md:mb-10">The Beginning</h2>
               <div className="space-y-5 md:space-y-6 text-base md:text-lg text-foreground/70 leading-relaxed font-light">
@@ -144,7 +144,7 @@ export default function AboutPage() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="text-center mb-12 md:mb-20"
           >
             <h2 className="font-heading text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6">Our Approach</h2>
@@ -163,7 +163,7 @@ export default function AboutPage() {
                 initial="hidden"
                 whileInView="visible"
                 custom={i}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: "-50px" }}
                 className="relative group"
               >
                 <div className="text-4xl md:text-5xl lg:text-6xl font-heading font-light text-accent/20 mb-4 md:mb-6 group-hover:text-accent/40 transition-colors duration-500">{step.num}</div>
@@ -183,7 +183,7 @@ export default function AboutPage() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="mb-12 md:mb-20 max-w-3xl"
           >
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 tracking-tight leading-[1.1]">Spaces Crafted <br />With Meaning</h2>
@@ -207,7 +207,7 @@ export default function AboutPage() {
                 initial="hidden"
                 whileInView="visible"
                 custom={i}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className="bg-card p-6 md:p-10 rounded-2xl md:rounded-3xl border border-border/50 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-500 group relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -226,7 +226,7 @@ export default function AboutPage() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <div className="text-accent text-6xl md:text-8xl lg:text-9xl font-heading leading-none h-12 md:h-16 opacity-50 mb-2 md:mb-4">&ldquo;</div>
             <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-light leading-snug">
@@ -243,7 +243,7 @@ export default function AboutPage() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="text-center mb-12 md:mb-20"
           >
             <h2 className="font-heading text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6">The People Behind Aakarshala</h2>
@@ -262,7 +262,7 @@ export default function AboutPage() {
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, margin: "-80px" }}
+                  viewport={{ once: false, margin: "-80px" }}
                   className="md:col-span-5 relative h-[350px] md:h-[500px] lg:h-[600px] rounded-2xl lg:rounded-[2rem] overflow-hidden shadow-md group cursor-pointer"
                 >
                   <Image
@@ -279,7 +279,7 @@ export default function AboutPage() {
                   initial="hidden"
                   whileInView="visible"
                   custom={2}
-                  viewport={{ once: true, margin: "-80px" }}
+                  viewport={{ once: false, margin: "-80px" }}
                   className="md:col-span-7 px-0 md:px-0"
                 >
                   <h3 className="text-2xl md:text-3xl lg:text-5xl font-heading font-bold mb-2 md:mb-4">{person.name}</h3>
@@ -300,7 +300,7 @@ export default function AboutPage() {
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               className="relative h-[350px] md:h-[500px] lg:h-[600px] rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-2xl group"
             >
               <Image
@@ -316,7 +316,7 @@ export default function AboutPage() {
               initial="hidden"
               whileInView="visible"
               custom={2}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
             >
               <h2 className="font-heading text-3xl md:text-4xl lg:text-6xl font-bold mb-6 md:mb-10">Experience</h2>
               <div className="space-y-5 md:space-y-6 text-base md:text-lg text-foreground/70 leading-relaxed font-light">
@@ -340,7 +340,7 @@ export default function AboutPage() {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="space-y-6 md:space-y-10"
           >
             <h2 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1]">

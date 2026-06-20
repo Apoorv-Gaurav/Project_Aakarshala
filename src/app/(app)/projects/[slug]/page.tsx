@@ -1,9 +1,29 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Image from 'next/image'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { ArrowUpRight } from 'lucide-react'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60 // Revalidate every 60 seconds (ISR) instead of force-dynamic
+
+interface Project {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  location: string;
+  coverImage?: { url: string; alt?: string } | string;
+}
+
+const getMasonryClasses = (index: number) => {
+  const mod = index % 5;
+  if (mod === 0) return { sizeClass: 'lg:col-span-2 lg:row-span-2 md:col-span-2', heightClass: 'h-[350px] md:h-[500px] lg:h-[800px]' };
+  if (mod === 1) return { sizeClass: 'lg:col-span-1 lg:row-span-1', heightClass: 'h-[300px] md:h-[350px] lg:h-[388px]' };
+  if (mod === 2) return { sizeClass: 'lg:col-span-1 lg:row-span-1', heightClass: 'h-[300px] md:h-[350px] lg:h-[388px]' };
+  if (mod === 3) return { sizeClass: 'lg:col-span-1 lg:row-span-1', heightClass: 'h-[300px] md:h-[350px] lg:h-[400px]' };
+  return { sizeClass: 'lg:col-span-2 lg:row-span-1 md:col-span-2', heightClass: 'h-[300px] md:h-[350px] lg:h-[400px]' };
+}
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params
@@ -25,6 +45,16 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
   const project = projects[0]
 
+  const { docs: otherProjects } = await payload.find({
+    collection: 'projects',
+    where: {
+      slug: {
+        not_equals: resolvedParams.slug,
+      },
+    },
+    limit: 5,
+  })
+
   return (
     <div className="min-h-screen bg-background">
       <div className="w-full h-[70vh] relative bg-neutral-200">
@@ -34,6 +64,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             alt={project.coverImage.alt as string || project.title}
             fill
             className="object-cover"
+            sizes="100vw"
+            priority
           />
         )}
         <div className="absolute inset-0 bg-black/30" />
@@ -86,7 +118,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <div className="mt-24">
             <h3 className="text-2xl font-bold mb-8">Gallery</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {project.gallery.map((item: any, index: number) => {
+              {project.gallery.map((item: { image: { url: string; alt?: string } | string }, index: number) => {
                 if (typeof item.image === 'string') return null;
                 return (
                   <div key={index} className="aspect-[4/3] relative bg-neutral-200 rounded-xl overflow-hidden">
@@ -95,6 +127,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                       alt={item.image.alt || `Gallery image ${index + 1}`}
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
                 )

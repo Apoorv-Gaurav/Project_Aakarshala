@@ -127,7 +127,7 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: false, margin: "-100px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="grid grid-cols-1 sm:grid-cols-2 gap-6"
             >
@@ -167,7 +167,7 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: false, margin: "-100px" }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="relative h-[600px] rounded-3xl overflow-hidden group shadow-xl"
             >
@@ -189,7 +189,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-6xl font-bold mb-6">Book a Consultation</h2>
@@ -201,7 +201,7 @@ export default function ContactPage() {
           <motion.form
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.2 }}
             onSubmit={handleSubmit}
             className="bg-card p-8 md:p-12 rounded-3xl shadow-xl border border-border/50"
@@ -295,7 +295,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-6xl font-bold mb-4">Visit Our Studio</h2>
@@ -306,7 +306,7 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8 }}
               className="lg:col-span-7 h-[500px] relative rounded-3xl overflow-hidden shadow-2xl group"
             >
@@ -323,7 +323,7 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:col-span-5 space-y-8 bg-card p-10 rounded-3xl border border-border/50 shadow-xl"
             >
@@ -376,7 +376,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl font-bold mb-4">Frequently Asked Questions</h2>
@@ -389,7 +389,7 @@ export default function ContactPage() {
                 key={index}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
                 className="bg-card border border-border/50 rounded-2xl overflow-hidden shadow-sm hover:border-accent/30 transition-colors"
               >
@@ -452,7 +452,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="space-y-8"
           >
             <h2 className="font-heading text-5xl md:text-7xl font-bold tracking-tighter">Begin Your Design Journey</h2>

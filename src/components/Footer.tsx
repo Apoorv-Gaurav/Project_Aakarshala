@@ -6,21 +6,21 @@ export function Footer() {
   return (
     <footer className="bg-neutral-950 text-white py-16 md:py-20">
       <div className="container mx-auto px-4 md:px-8 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12">
-        
+
         {/* Brand & Socials */}
-        <div className="col-span-2 sm:col-span-2 lg:col-span-3 space-y-5">
-          <Link href="/" className="relative h-12 w-36 md:h-16 md:w-48 block">
+        <div className="col-span-2 sm:col-span-2 lg:col-span-3 flex flex-col items-center text-center space-y-6">
+          <Link href="/" className="relative h-32 w-[280px] md:h-48 md:w-[350px] block">
             <Image
               src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781896703/logo_3_wagrg6.png"
               alt="Aakarshala Logo"
               fill
-              className="object-contain object-left"
+              className="object-contain object-center"
             />
           </Link>
           <p className="text-neutral-400 max-w-xs leading-relaxed text-sm">
             Premium architecture and interior design studio crafting timeless spaces that inspire and elevate human experience.
           </p>
-          <div className="flex space-x-3 pt-1">
+          <div className="flex justify-center space-x-3 pt-2">
             <Link href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><Camera size={16} /></Link>
             <Link href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><Briefcase size={16} /></Link>
             <Link href="#" className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300"><Pin size={16} /></Link>
@@ -53,22 +53,22 @@ export function Footer() {
         {/* Compact Location Card */}
         <div className="col-span-2 lg:col-span-4 lg:col-start-9 bg-neutral-900/50 border border-neutral-800 p-5 md:p-6 rounded-2xl">
           <h3 className="text-xs md:text-sm uppercase tracking-widest text-neutral-500 mb-3 md:mb-4 font-semibold">Visit Our Studio</h3>
-          
+
           <div className="flex gap-3 md:gap-4 mb-4 md:mb-5">
             <div className="w-16 h-16 md:w-20 md:h-20 relative rounded-lg overflow-hidden shrink-0">
               <Image src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781894216/banner_1_jc2ru7.jpg" alt="Office" fill className="object-cover" />
             </div>
             <div>
-              <p className="text-xs md:text-sm text-neutral-300 leading-relaxed mb-1 md:mb-2">Shop No. 9,<br/>Scorpio Club, Kursi Road,<br/>Lucknow, UP 226021</p>
+              <p className="text-xs md:text-sm text-neutral-300 leading-relaxed mb-1 md:mb-2">Shop No. 9,<br />Scorpio Club, Kursi Road,<br />Lucknow, UP 226021</p>
               <a href="tel:+919451177570" className="text-accent text-xs md:text-sm font-medium hover:text-white transition-colors">+91 94511 77570</a>
             </div>
           </div>
 
-          <Link 
+          <Link
             href="https://maps.app.goo.gl/kciadBWFGEhAwTFt7"
             target="_blank"
             rel="noopener noreferrer"
-            className="block h-20 md:h-24 relative rounded-lg overflow-hidden group mb-3 md:mb-4 border border-neutral-800"
+            className="block h-32 md:h-40 relative rounded-lg overflow-hidden group border border-neutral-800"
           >
             <Image
               src="https://res.cloudinary.com/dpr8jejse/image/upload/v1781900216/location_1_vl0qcf.jpg"
@@ -76,20 +76,10 @@ export function Footer() {
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300"></div>
-          </Link>
-
-          <Link 
-            href="https://maps.app.goo.gl/kciadBWFGEhAwTFt7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full block text-center bg-white text-black py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium hover:bg-neutral-200 transition-colors duration-300"
-          >
-            Open in Google Maps
           </Link>
         </div>
       </div>
-      
+
       <div className="container mx-auto px-4 md:px-8 mt-12 md:mt-16 pt-6 md:pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center text-neutral-500 text-xs md:text-sm gap-3 md:gap-4">
         <p>&copy; {new Date().getFullYear()} Aakarshala Studio. All rights reserved.</p>
         <div className="flex space-x-6">
