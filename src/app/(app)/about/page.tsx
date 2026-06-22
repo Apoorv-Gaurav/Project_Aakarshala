@@ -256,7 +256,6 @@ export default function AboutPage() {
           <div className="space-y-16 md:space-y-24">
             {[
               { name: 'Amit Verma', role: 'Founder & Principal Architect', desc: 'Amit Verma leads Aakarshala with a vision rooted in timeless design, thoughtful craftsmanship, and client-centric architecture. His approach combines creativity with technical excellence to create spaces that are elegant, practical, and enduring.', img: "https://res.cloudinary.com/dpr8jejse/image/upload/v1781905617/profile_1_npxnt3.jpg", linkedin: "https://www.linkedin.com/in/amit-verma-2a4893102?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
-              { name: 'Senior Interior Designer', role: 'Interior Design Lead', desc: 'Responsible for translating ideas into immersive interiors with attention to materials, lighting, and functionality.', img: IMG_BANNER_1 },
             ].map((person, i) => (
               <div key={i} className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 lg:gap-16 items-center">
                 <motion.div
@@ -284,15 +283,20 @@ export default function AboutPage() {
                   className="md:col-span-7 px-0 md:px-0"
                 >
                   <h3 className="text-2xl md:text-3xl lg:text-5xl font-heading font-bold mb-2 md:mb-4">{person.name}</h3>
-                  <div className="flex items-center gap-3 mb-4 md:mb-6">
+                  <div className="mb-4 md:mb-6">
                     <p className="text-xs md:text-sm uppercase tracking-widest text-accent font-semibold">{person.role}</p>
-                    {person.linkedin && (
-                      <a href={person.linkedin} target="_blank" rel="noopener noreferrer" className="text-neutral-500 hover:text-[#0A66C2] transition-colors p-1.5 bg-neutral-100 dark:bg-neutral-800 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-700" title={`Connect with ${person.name} on LinkedIn`}>
-                        <FaLinkedin className="w-4 h-4 md:w-5 md:h-5" />
-                      </a>
-                    )}
                   </div>
                   <p className="text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed font-light">{person.desc}</p>
+                  {person.linkedin && (
+                    <div className="mt-6 md:mt-8">
+                      <a href={person.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-xs md:text-sm uppercase tracking-widest font-semibold text-foreground/60 hover:text-foreground transition-colors group" title={`Connect with ${person.name} on LinkedIn`}>
+                        <span className="p-2.5 border border-border/50 rounded-full group-hover:border-accent group-hover:text-accent transition-colors duration-500">
+                          <FaLinkedin className="w-4 h-4" />
+                        </span>
+                        <span className="group-hover:text-accent transition-colors duration-500">LinkedIn</span>
+                      </a>
+                    </div>
+                  )}
                 </motion.div>
               </div>
             ))}

@@ -273,7 +273,7 @@ export default function HomePage() {
                 viewport={{ once: false, margin: "-50px" }}
                 className={`w-full relative ${project.sizeClass}`}
               >
-                <Link href={`/projects/${project.slug}`} className={`group block w-full relative rounded-[20px] md:rounded-[28px] overflow-hidden hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-700 ${project.heightClass}`}>
+                <div className={`group block w-full relative rounded-[20px] md:rounded-[28px] overflow-hidden hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-700 ${project.heightClass}`}>
                   <Image 
                     src={project.img}
                     alt={project.title}
@@ -297,11 +297,11 @@ export default function HomePage() {
                       <h3 className="text-white text-xl md:text-2xl lg:text-3xl font-bold font-heading mb-1 md:mb-2 truncate">{project.title}</h3>
                       <p className="text-white/80 text-sm md:text-base font-medium tracking-wide">{project.location}</p>
                     </div>
-                    <div className="w-10 h-10 md:w-14 md:h-14 shrink-0 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-xl">
-                      <ArrowUpRight className="w-4 h-4 md:w-6 md:h-6 group-hover:rotate-45 transition-transform duration-500" />
+                    <div className="w-10 h-10 md:w-14 md:h-14 shrink-0 rounded-full bg-white/50 text-black/50 flex items-center justify-center shadow-xl cursor-not-allowed">
+                      <ArrowUpRight className="w-4 h-4 md:w-6 md:h-6" />
                     </div>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
